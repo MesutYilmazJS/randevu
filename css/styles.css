@@ -1,12 +1,15 @@
 /* Modal boyutlandırma */
-.out_modal{
-  width: 80%;  /* Modal ekranın %80'ini kapsar */
-  height: 80%; /* Yükseklik %80 olacak */
+.out_modal {
+  width: 80%;
+  /* Modal ekranın %80'ini kapsar */
+  height: 80%;
+  /* Yükseklik %80 olacak */
   position: relative;
 }
 
 .seat {
-  background-color: #e5e7eb; /* Tailwind'in bg-gray-200 rengi */
+  background-color: #e5e7eb;
+  /* Tailwind'in bg-gray-200 rengi */
   border-radius: 8px;
   padding: 12px 0;
   text-align: center;
@@ -16,17 +19,39 @@
 }
 
 .seat:hover {
-  background-color: #3b82f6; /* Tailwind'in bg-blue-500 rengi */
+  background-color: #3b82f6;
+  /* Tailwind'in bg-blue-500 rengi */
   color: white;
 }
 
 .seat.selected {
-  background-color: #22c55e; /* Tailwind'in bg-green-500 rengi */
+  background-color: #22c55e;
+  /* Tailwind'in bg-green-500 rengi */
   color: white;
 }
 
 .seat.disabled {
-  background-color: #9ca3af; /* Tailwind'in bg-gray-400 rengi */
+  background-color: #9ca3af;
+  /* Tailwind'in bg-gray-400 rengi */
+  color: white;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background-color: #9ae6b4;
+  color: rgb(14, 10, 10);
+  cursor: not-allowed;
+}
+
+.seat.occupied {
+  background-color: #ef4444;
+  /* Başkasının seçtiği koltuk */
+  color: white;
+  cursor: not-allowed;
+}
+
+.seat.purchased {
+  background-color: #111114; /* Satın alınmış koltuk (mavi) */
   color: white;
   cursor: not-allowed;
 }
