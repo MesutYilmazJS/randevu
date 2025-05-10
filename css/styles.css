@@ -1,3 +1,10 @@
+/* Modal boyutlandırma */
+.out_modal{
+  width: 80%;  /* Modal ekranın %80'ini kapsar */
+  height: 80%; /* Yükseklik %80 olacak */
+  position: relative;
+}
+
 .seat {
   background-color: #e5e7eb; /* Tailwind'in bg-gray-200 rengi */
   border-radius: 8px;

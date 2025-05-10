@@ -8,7 +8,8 @@ class cinemaCls {
 		this.geriBtn = this.d.querySelectorAll('[data-header="back"]')[0];
         this.footer_sol = this.d.querySelectorAll('[data-footer="sol_title"]')[0];
         this.footer_sag = this.d.querySelectorAll('[data-footer="sag_title"]')[0] 
-		this.stepOrder = ['step2', 'step2'];
+		this.stepOrder = ['step1','step2', 'step3', 'step4'];
+        //this.socket = io("http://localhost:5000");
 		this.stepIndex = -1;
 		this.insertData = {};
 		this.init();
@@ -97,13 +98,17 @@ class cinemaCls {
                            koltuk_list.push('<div class="flex justify-center gap-2">');
                                 for (let aa = 1; aa < 9; aa++) {
                                     koltuk_sayisi++
-                                    koltuk_list.push(`<button class="seat">${koltuk_sayisi}</button>`);
+                                    koltuk_list.push(`<button data-index="seat_${koltuk_sayisi}" class="seat">${koltuk_sayisi}</button>`);
                                     if(aa==4) koltuk_list.push(`<div class="w-8"></div>`);
                                 }
                            koltuk_list.push('</div>');
                             
                         }
                        d.getElementById('koltuk_listesi').innerHTML =koltuk_list.join('');
+                       d.querySelectorAll('#koltuk_listesi [data-index]').forEach(item =>{
+                            item.k= item.dataset.index.split('_')[1];
+                            delete item.dataset.index;
+                       })
 					},
                     header_title :'Lütfen koltukları seçin:',
 					content: {
@@ -115,9 +120,69 @@ class cinemaCls {
                                 </div>
                             </div>
                             <div class="space-y-3" id="koltuk_listesi"></div>
+                        </div>
+                        <div class="m-auto mt-12 flex justify-center gap-4">
+                            <div class="pl-4 pr-4 rounded-t-lg bg-black text-white flex justify-center">Dolu Koltuk</div>
+                            <div class="pl-4 pr-4 rounded-t-lg bg-gray-300 flex justify-center">Boş Koltuk</div>
+                            <div class="pl-4 pr-4 rounded-t-lg bg-green-300 text-stone-500 flex justify-center">Dolu Koltuk</div>
+                        </div>
+                        `
+					},
+                    fotter_sag:'10:00',
+					next_step_func: () => {
+						cinema.modal_path_move('next');
+					},
+					prev_step_func: () => {
+						cinema.modal_path_move('back');
+					},
+				},
+                "step3": {
+					init: async () => {},
+                    header_title :'Seçiminizi gözden geçirin:',
+					content: {
+						in_html: ` 
+                            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                                   <div onclick="cinema.stepMove.next_step_func();" class="bg-gray-200 p-4 rounded-lg">
+                                        <img src="https://via.placeholder.com/150" alt="Film 1"
+                                            class="w-full h-48 object-cover rounded-lg mb-2">
+                                        <h3 class="text-center font-semibold">Film 1</h3>
+                                    </div>
+                                    <div class="mt-4">
+                                    <h4 class="font-semibold">Seçilen Koltuklar:</h4>
+                                    <ul class="list-disc pl-6">
+                                        <li>Koltuk 1</li>
+                                        <li>Koltuk 2</li>
+                                        <li>Koltuk 3</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>`
 					},
-                    fotter_sag:'',
+                    fotter_sag:'10:00',
+					next_step_func: () => {
+						cinema.modal_path_move('next');
+					},
+					prev_step_func: () => {
+						cinema.modal_path_move('back');
+					},
+				},
+                "step4": {
+					init: async () => {},
+                    header_title :'Ödeme bilgilerinizi girin:',
+					content: {
+						in_html: `
+                           <div class="mb-4 mt-8">
+                                <p class="text-gray-700 mb-4"></p>
+                                <input type="text" placeholder="Kart Numarası"
+                                    class="w-full p-2 border border-gray-300 rounded-lg mb-2">
+                                <input type="text" placeholder="Ad Soyad" class="w-full p-2 border border-gray-300 rounded-lg mb-2">
+                                <input type="text" placeholder="Son Kullanma Tarihi"
+                                    class="w-full p-2 border border-gray-300 rounded-lg mb-2">
+                                <input type="text" placeholder="CVC" class="w-full p-2 border border-gray-300 rounded-lg mb-2">
+                             </div>
+                        `
+					},
+                    fotter_sag:'10:00',
 					next_step_func: () => {
 						cinema.modal_path_move('next');
 					},
