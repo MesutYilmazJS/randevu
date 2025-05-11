@@ -131,6 +131,11 @@ class cinemaCls {
                         }, 1000);
                     },
                     socketRun: () => {
+                        if(!cinema.socket.connected){
+                            alert('Back-end bağlı değil')
+                        }
+
+
                         this.seats = document.querySelectorAll(".seat");
                         this.socket.on("currentSeats", (currentSeats) => {
                             console.log(currentSeats)
