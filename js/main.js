@@ -64,7 +64,6 @@ class cinemaCls {
             this.step = {
                 "step1": {
                     init: async () => {
-                        this.btn.classList.add('hidden');
                         var film_list = [];
                         /* Back-End veri çekilecek alan */
                         for (let a = 0; a < 1; a++) {
@@ -254,7 +253,8 @@ class cinemaCls {
                     },
                 },
                 "step4": {
-                    init: async () => { },
+                    init: async () => {                         this.btn.classList.add('hidden');
+                    },
                     header_title: 'Ödeme bilgilerinizi girin:',
                     content: {
                         in_html: `
@@ -274,6 +274,8 @@ class cinemaCls {
                         cinema.modal_path_move('next');
                     },
                     prev_step_func: () => {
+                        this.btn.classList.remove('hidden');
+
                         cinema.modal_path_move('back');
                     },
                 },
